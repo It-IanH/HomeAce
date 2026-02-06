@@ -7,6 +7,10 @@
   --white: #ffffff;
   --green: #2f9e44;
   --shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+
+  /* calendar sizing controls */
+  --cal-gap: 8px;
+  --day-min-width: 130px;
 }
 
 * {
@@ -89,6 +93,9 @@ body {
   padding: 20px;
   box-shadow: var(--shadow);
   min-height: 640px;
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .calendar-header {
@@ -105,19 +112,21 @@ body {
 
 .calendar-weekdays {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(var(--day-min-width), 1fr));
   gap: 6px;
   font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--dark-gray);
   margin-bottom: 8px;
   padding: 4px 2px;
+  min-width: calc((7 * var(--day-min-width)) + (6 * var(--cal-gap)));
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(7, minmax(var(--day-min-width), 1fr));
+  gap: var(--cal-gap);
+  min-width: calc((7 * var(--day-min-width)) + (6 * var(--cal-gap)));
 }
 
 .day-cell {
@@ -377,9 +386,14 @@ body {
 }
 
 @media (max-width: 600px) {
+  :root {
+    --cal-gap: 4px;
+    --day-min-width: 84px;
+  }
+
   .calendar-weekdays,
   .calendar-grid {
-    gap: 4px;
+    gap: var(--cal-gap);
   }
 
   .day-cell {
