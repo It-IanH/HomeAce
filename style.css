@@ -1,0 +1,389 @@
+:root {
+  --blue: #2c5aa0;
+  --black: #1b1b1b;
+  --light-gray: #f4f6f8;
+  --mid-gray: #c9d0d9;
+  --dark-gray: #4b4f56;
+  --white: #ffffff;
+  --green: #2f9e44;
+  --shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #17212b;
+  background: #eef2f7;
+  min-height: 100vh;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--blue);
+  color: var(--white);
+  padding: 18px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+}
+
+.month-goal-bar {
+  background: var(--black);
+  color: var(--white);
+  padding: 16px 24px;
+}
+
+.month-goal-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.month-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.month-goal {
+  flex: 1;
+  text-align: right;
+  font-size: 0.95rem;
+  color: #e0e4ea;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.month-goal:focus {
+  outline: none;
+  border-color: #3d78d4;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.main-layout {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.calendar-panel {
+  flex: 0 0 60%;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  min-height: 640px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--dark-gray);
+  margin-bottom: 8px;
+  padding: 4px 2px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day-cell {
+  background: var(--light-gray);
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 110px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border 0.2s ease, background 0.2s ease;
+}
+
+.day-cell:hover {
+  border-color: #b3c7ef;
+  background: #f9fbff;
+}
+
+.day-cell.selected {
+  border-color: #2c5aa0;
+  background: #e8f0ff;
+}
+
+.day-number {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.day-metrics {
+  font-size: 0.78rem;
+  color: var(--dark-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-panel {
+  flex: 0 0 40%;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-empty {
+  margin: auto;
+  text-align: center;
+  color: var(--dark-gray);
+  font-size: 0.95rem;
+}
+
+.detail-content {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.detail-panel.active .detail-content {
+  display: flex;
+}
+
+.detail-panel.active .detail-empty {
+  display: none;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.detail-section {
+  background: #f8f9fc;
+  border: 1px solid #e1e7f2;
+  border-radius: 10px;
+  padding: 12px;
+  position: relative;
+  min-height: 120px;
+}
+
+.section-header h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+}
+
+.section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-footer {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+}
+
+.icon-btn {
+  border: none;
+  background: #e7ecf6;
+  color: #1f3b67;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: #d9e3f5;
+}
+
+.icon-btn.small {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.detail-item {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid #e0e6f1;
+}
+
+.detail-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.item-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.item-actions button {
+  border: none;
+  background: transparent;
+  color: #5072a7;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.item-description {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--dark-gray);
+  display: none;
+}
+
+.detail-item.expanded .item-description {
+  display: block;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.todo-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  font-size: 0.85rem;
+}
+
+.todo-item input[type="checkbox"] {
+  accent-color: var(--green);
+}
+
+.todo-item.completed span {
+  color: #7b858f;
+  position: relative;
+}
+
+.todo-item.completed span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: rgba(120, 120, 120, 0.35);
+}
+
+.todo-item .checkmark {
+  color: var(--green);
+  font-size: 0.9rem;
+  display: none;
+}
+
+.todo-item.completed .checkmark {
+  display: inline;
+}
+
+.empty-state {
+  color: #8a94a6;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+#notesInput {
+  width: 100%;
+  min-height: 140px;
+  border-radius: 8px;
+  border: 1px solid #d2d7e4;
+  padding: 10px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.detail-nav {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+@media (max-width: 1024px) {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .calendar-panel,
+  .detail-panel {
+    flex: 1 1 auto;
+  }
+
+  .month-goal-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .month-goal {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar-weekdays,
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  .day-cell {
+    min-height: 90px;
+    padding: 8px;
+  }
+}
